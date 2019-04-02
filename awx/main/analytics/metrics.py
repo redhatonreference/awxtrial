@@ -3,7 +3,7 @@ from datetime import datetime
 
 from prometheus_client import (
     Gauge,
-    Info
+    Info,
     generate_latest
 )
 
@@ -24,18 +24,18 @@ from awx.main.analytics import register
 
 
 SYSTEM_INFO = Info('awx_system_info', 'AWX System Information')
-TOTAL_SESSIONS = Guage('awx_active_sessions', 'Number of active session')
-CUSTOM_VENVS = Guage('awx_custom_virtualenvs', 'Number of virtualenvs')
-ORG_COUNT = Guage('awx_organizations', 'Number of organizations')
-USER_COUNT = Guage('awx_users', 'Number of users')
-TEAM_COUNT = Guage('awx_teams', 'Number of teams')
-INV_COUNT = Guage('awx_inventories', 'Number of inventories')
-PROJ_COUNT = Guage('awx_projects', 'Number of projects')
-JT_COUNT = Guage('awx_job_templates', 'Number of job templates')
-WFJT_COUNT = Guage('awx_workflow_job_templates', 'Number of workflow job templates')
-HOST_COUNT = Guage('awx_hosts', 'Number of hosts')
-SCHEDULE_COUNT = Guage('awx_schedules', 'Number of schedules')
-INV_SCRIPT_COUNT = Guage('awx_inventory_scripts', 'Number of invetory scripts'
+TOTAL_SESSIONS = Gauge('awx_active_sessions', 'Number of active session')
+CUSTOM_VENVS = Gauge('awx_custom_virtualenvs', 'Number of virtualenvs')
+ORG_COUNT = Gauge('awx_organizations', 'Number of organizations')
+USER_COUNT = Gauge('awx_users', 'Number of users')
+TEAM_COUNT = Gauge('awx_teams', 'Number of teams')
+INV_COUNT = Gauge('awx_inventories', 'Number of inventories')
+PROJ_COUNT = Gauge('awx_projects', 'Number of projects')
+JT_COUNT = Gauge('awx_job_templates', 'Number of job templates')
+WFJT_COUNT = Gauge('awx_workflow_job_templates', 'Number of workflow job templates')
+HOST_COUNT = Gauge('awx_hosts', 'Number of hosts')
+SCHEDULE_COUNT = Gauge('awx_schedules', 'Number of schedules')
+INV_SCRIPT_COUNT = Gauge('awx_inventory_scripts', 'Number of invetory scripts')
 
 def metrics():
     license_info = get_license(show_key=False)
@@ -52,7 +52,7 @@ def metrics():
 
     current_counts = counts(datetime.now()) 
 
-    CUSTOM_VENS.set(current_counts['custom_virtualenvs'])
+    CUSTOM_VENVS.set(current_counts['custom_virtualenvs'])
     TOTAL_SESSIONS.set(current_counts['active_sessions'])
 
     return generate_latest()

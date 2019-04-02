@@ -43,4 +43,4 @@ class MetricsView(APIView):
     
     def get(self, request, format='txt'):
         ''' Show Metrics Details '''
-        return Response(metrics())
+        return Response(metrics().decode('UTF-8'))
